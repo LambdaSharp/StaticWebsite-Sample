@@ -1,0 +1,90 @@
+# MindTouch λ#
+# Copyright (C) 2018-2019 MindTouch, Inc.
+# www.mindtouch.com  oss@mindtouch.com
+#
+# For community documentation and downloads visit mindtouch.com;
+# please review the licensing section.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+Module: LambdaSharp.Demo.StaticWebsite
+Description: Create a sample static website with pre-populated assets
+Using:
+
+  - Module: LambdaSharp.S3.IO:0.5
+
+Items:
+
+  # Get site configuration settings
+  - Parameter: Title
+    Description: Website title
+    Section: Website Settings
+    Label: Website Title
+
+  - Parameter: Greeting
+    Description: Website greeting
+    Section: Website Settings
+    Label: Website Greeting
+
+  # Write the site configuration settings to a JSON file in the S3 bucket
+  - Resource: WebsiteConfigJson
+    Type: LambdaSharp::S3::WriteJson
+    Properties:
+      Bucket: !Ref WebsiteBucket
+      Key: config.json
+      Contents:
+        title: !Ref Title
+        message: !Ref Greeting
+
+  # Create bucket to host website
+  - Resource: WebsiteBucket
+    Description: S3 bucket for hosting website assets
+    Type: AWS::S3::Bucket
+    Properties:
+      WebsiteConfiguration:
+        ErrorDocument: error/index.html
+        IndexDocument: index.html
+
+  - Resource: WebsiteBucketPolicy
+    Description: Public access policy
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      PolicyDocument:
+        Id: WebsiteBucket
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action: s3:GetObject
+            Resource: !Sub "${WebsiteBucket.Arn}/*"
+      Bucket: !Ref WebsiteBucket
+    DependsOn: DeployWebsiteFiles
+
+  - Package: WebsiteFiles
+    Description: Website files to deploy
+    Files: wwwroot/
+
+  - Resource: DeployWebsiteFiles
+    Type: LambdaSharp::S3::Unzip
+    Properties:
+      SourceBucket: !Ref DeploymentBucketName
+      SourceKey: !Ref WebsiteFiles
+      DestinationBucket: !Ref WebsiteBucket
+      DestinationKey: ""
+
+  # Export website url
+  - Variable: WebsiteUrl
+    Description: Website URL
+    Scope: public
+    Value: !GetAtt WebsiteBucket.WebsiteURL

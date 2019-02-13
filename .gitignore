@@ -1,0 +1,17 @@
+# Visual Studio Code
+.vscode
+
+# .NET Core
+bin
+obj
+
+# LambdaSharpTool
+cloudformation.json
+*-*.zip
+
+# Nuget packages
+*.nupkg
+
+# Misc
+.sandbox
+params.yml
