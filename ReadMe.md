@@ -1,5 +1,3 @@
-![λ#](Docs/LambdaSharp-Logo.png)
-
 # λ# - Create a Static Website with CloudFormation
 
 [This sample requires the λ# tool to deploy.](https://github.com/LambdaSharp/LambdaSharpTool)
