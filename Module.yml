@@ -18,7 +18,7 @@
 # limitations under the License.
 
 Module: LambdaSharp.Demo.StaticWebsite
-Description: Create a sample static website with pre-populated assets
+Description: Static website with pre-populated assets and a configurable title and message
 Using:
 
   - Module: LambdaSharp.S3.IO:0.5

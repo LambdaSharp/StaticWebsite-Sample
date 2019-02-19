@@ -6,6 +6,17 @@
 
 This λ# module creates a static website hosted by an S3 bucket with a customizable title and greeting message. The assets for the website are uploaded from the `wwwroot` folder and copied to the S3 bucket during deployment.
 
+## Deploy
+
+This module is compiled to CloudFormation and deployed using the λ# CLI.
+
+```
+git clone https://github.com/LambdaSharp/StaticWebsite-Sample.git
+cd StaticWebsite-Sample
+lash deploy
+```
+
+
 ## Details
 
 1. Prompt for the `Title` and `Greeting` message values of the website.
@@ -22,11 +33,19 @@ This λ# module creates a static website hosted by an S3 bucket with a customiza
 <dt><code>Greeting</code></dt>
 <dd>
 The <code>Greeting</code> parameter sets the website's greeting message.
+
+<i>Required</i>: Yes
+
+<i>Type</i>: String
 </dd>
 
 <dt><code>Title</code></dt>
 <dd>
 The <code>Title</code> parameter sets the website's title.
+
+<i>Required</i>: Yes
+
+<i>Type</i>: String
 </dd>
 
 </dl>
