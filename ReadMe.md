@@ -56,7 +56,7 @@ The <code>Title</code> parameter sets the website's title.
 [![Watch the video](Docs/Video-Thumbnail.png)](https://youtu.be/cK7rxKWO6nI)
 
 
-## Attribution
+## Acknowledgements
 
 The website assets for this module were created by Cloud Academy:
 https://github.com/cloudacademy/static-website-example
