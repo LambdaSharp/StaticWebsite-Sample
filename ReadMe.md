@@ -1,6 +1,6 @@
 # λ# - Create a Static Website with CloudFormation
 
-[This sample requires the λ# tool to deploy.](https://lambdasharp.github.io/)
+[This sample requires the λ# tool to deploy.](https://lambdasharp.net/)
 
 ## Overview
 
