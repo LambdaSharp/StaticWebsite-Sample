@@ -1,14 +1,14 @@
-# λ# - Create a Static Website with CloudFormation
+# LambdaSharp - Create a Static Website with CloudFormation
 
-[This sample requires the λ# tool to deploy.](https://lambdasharp.net/)
+[This sample requires the LambdaSharp CLI to deploy.](https://lambdasharp.net/)
 
 ## Overview
 
-This λ# module creates a static website hosted by an S3 bucket with a customizable title and greeting message. The assets for the website are uploaded from the `wwwroot` folder and copied to the S3 bucket during deployment.
+This LambdaSharp module creates a static website hosted by an S3 bucket with a customizable title and greeting message. The assets for the website are uploaded from the `wwwroot` folder and copied to the S3 bucket during deployment.
 
 ## Deploy
 
-This module is compiled to CloudFormation and deployed using the λ# CLI.
+This module is compiled to CloudFormation and deployed using the LambdaSharp CLI.
 
 ```
 git clone https://github.com/LambdaSharp/StaticWebsite-Sample.git
